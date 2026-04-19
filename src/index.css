@@ -1,0 +1,264 @@
+/* Custom Global Styles for Bootstrap theme */
+:root {
+  --bg-color: #0a0a0f;
+  --text-color: #ffffff;
+  --accent-color: #6366f1;
+  --accent-secondary: #8b5cf6;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .pulsing-dot-ping,
+  .typewriter-cursor,
+  .project-card,
+  .contact-card {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .project-card:hover,
+  .contact-card:hover {
+    transform: none;
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 2000;
+  padding: 0.5rem 1rem;
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: 0.375rem;
+  font-weight: 600;
+}
+
+.skip-link:not(:focus) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.text-nav-muted {
+  color: #94a3b8 !important;
+}
+
+.text-nav-muted:hover,
+.text-nav-muted:focus {
+  color: #e2e8f0 !important;
+}
+
+.bg-accent-bar {
+  background-color: var(--accent-color);
+}
+
+.hero-lead-width {
+  max-width: 36rem;
+}
+
+.typewriter-line {
+  min-height: 2.5rem;
+}
+
+.github-link-text {
+  text-underline-offset: 4px;
+}
+
+.contact-tile-link:focus-visible .contact-card {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Custom Nav Scroll Style */
+.navbar-scrolled {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #0a0a0f !important;
+}
+
+/* Hero Avatar */
+.hero-avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-avatar-border {
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(to top right, var(--accent-color), var(--accent-secondary));
+}
+
+.hero-avatar {
+  background-color: var(--bg-color);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-avatar span {
+  font-size: 100px;
+  font-weight: 900;
+  color: #ffffff;
+  user-select: none;
+}
+
+/* Available Badge */
+.available-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 50px;
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  color: #22c55e;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.pulsing-dot {
+  position: relative;
+  display: flex;
+  width: 10px;
+  height: 10px;
+}
+.pulsing-dot-ping {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #22c55e;
+  opacity: 0.75;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.pulsing-dot-core {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #22c55e;
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+/* Back to top (fixed; above Bootstrap navbar z-index) */
+.back-to-top-btn {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1040;
+  width: 3rem;
+  height: 3rem;
+  padding: 0 !important;
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: linear-gradient(to right, var(--accent-secondary), var(--accent-color));
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+.btn-gradient:hover {
+  opacity: 0.85;
+  color: #fff;
+}
+
+/* Outline Button */
+.btn-outline-custom {
+  color: #e2e8f0;
+  border: 2px solid #475569;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+.btn-outline-custom:hover {
+  opacity: 0.85;
+  color: #fff;
+  border-color: #64748b;
+}
+
+/* Cards (Base style without glow/shadow) */
+.glass-card {
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  height: 100%;
+  transition: border-color 0.2s ease;
+}
+
+/* Project & Contact Card Hover */
+.project-card, .contact-card {
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.project-card:hover, .contact-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.project-card {
+  border-top: 3px solid var(--accent-color);
+}
+
+/* Custom Badges (Skills Section) */
+.badge-blue { background-color: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+.badge-purple { background-color: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.3); }
+.badge-green { background-color: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
+.badge-custom-pill { padding: 6px 12px; font-weight: 500; font-size: 0.85rem; border-radius: 50px; }
+
+/* Custom Text Colors */
+.text-accent { color: var(--accent-color); }
+.text-secondary-accent { color: var(--accent-secondary); }
+
+/* Typewriter Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: var(--accent-color);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Global focus outlines for accessibility */
+a:focus, button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.text-container-narrow {
+  max-width: 600px;
+}
