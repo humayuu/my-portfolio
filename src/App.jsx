@@ -5,18 +5,22 @@ import { useState, useEffect } from 'react';
 // ==========================================
 
 const GITHUB = 'https://github.com/humayuu';
-const LINKEDIN = 'https://www.linkedin.com/in/humayun-ahmedd/';
-const GMAIL = 'humayun11998@gmail.com';
-const WHATSAPP = 'https://wa.me/923243480273';
+const LINKEDIN = 'https://www.linkedin.com/in/humayuu-ahmed/';
+const GMAIL = 'humayun.ahmed1198@gmail.com';
+const WHATSAPP = 'https://wa.me/923452578930';
 
-const mailto = (subject, body = '') => {
-  const params = new URLSearchParams({ subject });
+const gmailCompose = (subject, body = '') => {
+  const params = new URLSearchParams({
+    view: 'cm',
+    fs: '1',
+    to: GMAIL,
+    su: subject,
+  });
   if (body) params.set('body', body);
-  return `mailto:${GMAIL}?${params.toString()}`;
+  return `https://mail.google.com/mail/?${params.toString()}`;
 };
 
-/** Add your CV as public/resume.pdf when ready. */
-const RESUME_PDF = '/resume.pdf';
+const RESUME_PDF = '/Humayun.Resume.pdf';
 
 const HERO_ROLE_FOCUS =
   'Passionate about full stack growth—solid backends, thoughtful interfaces, and shipping dependable web products.';
@@ -105,12 +109,12 @@ const CONTACTS = [
   },
   {
     id: 'gmail',
-    platform: 'Email',
+    platform: 'Gmail',
     label: 'Send message',
     icon: 'fas fa-envelope',
-    link: mailto('Hello from your portfolio', 'Hi Humayun,\n\n'),
-    external: false,
-    ariaLabel: 'Send email to Humayun',
+    link: gmailCompose('Hello from your portfolio', 'Hi Humayun,\n\n'),
+    external: true,
+    ariaLabel: 'Open Gmail compose to email Humayun in a new tab',
   },
   {
     id: 'whatsapp',
@@ -151,47 +155,74 @@ const SectionHeading = ({ title }) => (
 // SECTIONS
 // ==========================================
 
+const NAV_LINKS = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
+
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setIsMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+  const hasSolidBg = isScrolled || isMenuOpen;
 
   return (
     <nav
-      className={`navbar navbar-expand-lg navbar-dark fixed-top py-3 transition-all ${isScrolled ? 'navbar-scrolled' : ''}`}
+      className={`navbar navbar-expand-lg navbar-dark fixed-top py-3 ${hasSolidBg ? 'navbar-scrolled' : ''}`}
       style={{
-        backgroundColor: isScrolled ? '#0a0a0f' : 'transparent',
-        transition: 'all 0.3s ease',
+        backgroundColor: hasSolidBg ? '#0a0a0f' : 'transparent',
+        transition: 'background-color 0.3s ease, border-color 0.3s ease',
       }}
     >
       <div className="container">
-        <a className="navbar-brand fw-bold fs-4 text-white" href="#home">
+        <a
+          className="navbar-brand fw-bold fs-4 text-white"
+          href="#home"
+          onClick={closeMenu}
+        >
           Humayun<span className="text-accent">.</span>
         </a>
         <button
-          className="navbar-toggler border-0 shadow-none"
+          className="navbar-toggler border-0 shadow-none p-2"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          onClick={() => setIsMenuOpen((v) => !v)}
         >
-          <i className="fas fa-bars text-white fs-4" aria-hidden />
+          <i
+            className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-white fs-4`}
+            aria-hidden
+          />
         </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul className="navbar-nav gap-3">
-            {navLinks.map((item) => (
+        <div
+          id="navbarNav"
+          className={`collapse navbar-collapse justify-content-end ${isMenuOpen ? 'show' : ''}`}
+        >
+          <ul className="navbar-nav gap-2 gap-lg-3 align-items-lg-center">
+            {NAV_LINKS.map((item) => (
               <li className="nav-item" key={item}>
-                <a className="nav-link text-nav-muted fw-medium" href={`#${item.toLowerCase()}`}>
+                <a
+                  className="nav-link text-nav-muted fw-medium"
+                  href={`#${item.toLowerCase()}`}
+                  onClick={closeMenu}
+                >
                   {item}
                 </a>
               </li>
@@ -246,7 +277,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="d-flex flex-column flex-sm-row flex-wrap gap-3 justify-content-center justify-content-lg-start">
+          <div className="d-flex flex-column flex-sm-row flex-wrap gap-3 justify-content-center justify-content-lg-start hero-cta-group">
             <a
               href={RESUME_PDF}
               download="Humayun-Resume.pdf"

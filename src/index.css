@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -261,4 +262,99 @@ a:focus, button:focus {
 
 .text-container-narrow {
   max-width: 600px;
+}
+
+/* ==========================================
+   RESPONSIVE OVERRIDES
+   ========================================== */
+
+/* Mobile nav drawer (below the lg breakpoint) */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .navbar-nav .nav-link {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+  }
+  .navbar-toggler:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+  }
+}
+
+/* Tablets and smaller */
+@media (max-width: 767.98px) {
+  .glass-card {
+    padding: 20px;
+  }
+  .hero-avatar {
+    width: 220px;
+    height: 220px;
+  }
+  .hero-avatar span {
+    font-size: 88px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 575.98px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  .glass-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .hero-avatar {
+    width: 180px;
+    height: 180px;
+  }
+  .hero-avatar span {
+    font-size: 72px;
+  }
+
+  .available-badge {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .back-to-top-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  /* Stretch hero CTAs to full width when stacked */
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  /* Slightly smaller body lead text inside hero */
+  .hero-lead-width {
+    max-width: 100%;
+  }
+}
+
+/* Very small phones (e.g. 320px) */
+@media (max-width: 374.98px) {
+  .hero-avatar {
+    width: 150px;
+    height: 150px;
+  }
+  .hero-avatar span {
+    font-size: 60px;
+  }
+  .badge-custom-pill {
+    font-size: 0.78rem;
+    padding: 5px 10px;
+  }
 }
