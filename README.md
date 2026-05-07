@@ -2,7 +2,7 @@
 
 Personal portfolio website built with **React 19 + Vite + Bootstrap 5**. Showcases my background as a PHP & Laravel developer, projects, tech stack, and ways to get in touch.
 
-> **Live site:** _to be added after first Vercel deploy_
+> **Live site:** [https://humayun-ahmed.vercel.app](https://humayun-ahmed.vercel.app)
 
 ---
 
@@ -81,7 +81,7 @@ Every push to `main` triggers an automatic redeploy. Pull requests get instant *
 
 ## Connect
 
-- **Portfolio:** _add Vercel URL here after first deploy_
+- **Portfolio:** [humayun-ahmed.vercel.app](https://humayun-ahmed.vercel.app)
 - **GitHub:** [@humayuu](https://github.com/humayuu)
 - **LinkedIn:** [humayuu-ahmed](https://www.linkedin.com/in/humayuu-ahmed/)
 - **Email:** humayun.ahmed1198@gmail.com
