@@ -257,7 +257,7 @@ const Hero = () => {
               <span className="pulsing-dot-ping" aria-hidden />
               <span className="pulsing-dot-core" aria-hidden />
             </div>
-            Open to junior roles & internships
+            Open to work
           </div>
 
           <h1 className="display-4 fw-bold text-white mb-0">
